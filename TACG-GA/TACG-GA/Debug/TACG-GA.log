@@ -1,0 +1,35 @@
+﻿  main.cpp
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\vec3.h(61,13): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\camera.h(22,54): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\camera.h(22,37): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\camera.h(32,21): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\hitable_list.h(30,36): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\material.h(31,24): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\material.h(49,71): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\material.h(49,54): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\material.h(49,37): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\material.h(109,30): warning C4244: '=': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(21,8): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(33,17): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(34,21): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(34,72): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(46,30): warning C4244: 'inicializando': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(47,59): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(47,83): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(47,27): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(48,16): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(54,45): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(53,45): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(52,61): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(55,22): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(62,33): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(61,33): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(60,44): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(63,33): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(64,22): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(67,77): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(74,82): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(75,76): warning C4305: 'argumento': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(99,25): warning C4305: 'inicializando': truncamento de 'double' para 'float'
+C:\Users\Alexandre\Desktop\TACG-GA\TACG-GA\main.cpp(84,17): warning C4101: 'filevalues': variável local não referenciada
+  TACG-GA.vcxproj -> C:\Users\Alexandre\Desktop\TACG-GA\Debug\TACG-GA.exe
