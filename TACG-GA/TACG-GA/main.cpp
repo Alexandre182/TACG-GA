@@ -1,9 +1,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
+#include <fstream>
 #include <ostream>
 #include <sstream>
 #include <float.h>
+#include <list>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 #include "vec3.h"
@@ -13,7 +15,6 @@
 #include "hitable_list.h"
 #include "random.h"
 #include "material.h"
-#include "FileReader.h"
 
 
 using namespace std;
@@ -89,10 +90,11 @@ int main()
 	vec3 cameraPos;
 	hitable** objects = new hitable * [0];
 
-	material** materials = new material * [3];
-	materials[0] = new lambertian(vec3(0.5, 0.5, 0.5));
-	materials[1] = new metal(vec3(0.7, 0.6, 0.5), 0.0);
-	materials[2] = new dielectric(1.5);
+	material** materials = new material * [4];
+	materials[0] = new lambertian(vec3(0, 0.4, 0.7));
+	materials[1] = new lambertian(vec3(0, 0.9, 0.3));
+	materials[2] = new metal(vec3(0.7, 0.6, 0.5), 0.0);
+	materials[3] = new dielectric(1.5);
 
 	int width = 200;
 	int height = 200;

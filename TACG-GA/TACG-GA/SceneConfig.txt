@@ -1,3 +1,14 @@
-cameraPos 1 2 3
-sphere 1 2 3
-img 200 100 1
+// x, y, z
+cameraPos 13 2 3
+
+// spheres count
+sphere 4
+
+// x, y, z, radius, material index (0: matt, 1: metal, 2: glass)
+0 -1000 0 1000 1 // ground
+0 1 0 1 2
+-4 1 1 1 3
+4 1 0 1 0
+
+// width, height, sampling count, blur
+img 200 200 5 0.1

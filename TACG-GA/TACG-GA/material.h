@@ -1,15 +1,5 @@
 #ifndef MATERIALH
 #define MATERIALH
-//==================================================================================================
-// Written in 2016 by Peter Shirley <ptrshrl@gmail.com>
-//
-// To the extent possible under law, the author(s) have dedicated all copyright and related and
-// neighboring rights to this software to the public domain worldwide. This software is distributed
-// without any warranty.
-//
-// You should have received a copy (see file COPYING.txt) of the CC0 Public Domain Dedication along
-// with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
-//==================================================================================================
 
 #include "ray.h"
 #include "hitable.h"
@@ -17,13 +7,11 @@
 
 struct hit_record;
 
-
 float schlick(float cosine, float ref_idx) {
     float r0 = (1 - ref_idx) / (1 + ref_idx);
     r0 = r0 * r0;
     return r0 + (1 - r0) * pow((1 - cosine), 5);
 }
-
 
 bool refract(const vec3& v, const vec3& n, float ni_over_nt, vec3& refracted) {
     vec3 uv = unit_vector(v);
@@ -37,11 +25,9 @@ bool refract(const vec3& v, const vec3& n, float ni_over_nt, vec3& refracted) {
         return false;
 }
 
-
 vec3 reflect(const vec3& v, const vec3& n) {
     return v - 2 * dot(v, n) * n;
 }
-
 
 vec3 random_in_unit_sphere() {
     vec3 p;
@@ -51,12 +37,10 @@ vec3 random_in_unit_sphere() {
     return p;
 }
 
-
 class material {
 public:
     virtual bool scatter(const ray& r_in, const hit_record& rec, vec3& attenuation, ray& scattered) const = 0;
 };
-
 
 class lambertian : public material {
 public:
@@ -71,7 +55,6 @@ public:
     vec3 albedo;
 };
 
-
 class metal : public material {
 public:
     metal(const vec3& a, float f) : albedo(a) { if (f < 1) fuzz = f; else fuzz = 1; }
@@ -84,7 +67,6 @@ public:
     vec3 albedo;
     float fuzz;
 };
-
 
 class dielectric : public material {
 public:
@@ -122,6 +104,5 @@ public:
 
     float ref_idx;
 };
-
 
 #endif
