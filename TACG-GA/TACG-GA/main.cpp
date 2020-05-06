@@ -60,14 +60,10 @@ hitable* my_scene() {
 
 int main()
 {
-	int nx = 100;
-	int ny = 100;
-	int ns = 1;
-
 	ifstream file;
 	file.open("SceneConfig.txt");
 
-	list<string> text;
+	list<string> lines;
 	if (file.is_open())
 	{
 		string line;
@@ -78,96 +74,109 @@ int main()
 
 			while (getline(ss, line, ' '))
 			{
-				text.push_back(line);
+				if (line == "" || line.rfind("//", 0) == 0)
+				{
+					break;
+				}
+
+				lines.push_back(line);
 			}
 		}
 	}
 
 	file.close();
 
-	vec3 lookfrom;
-	
-	hitable** objects = new hitable * [1];
-	//objects[0] = new sphere(vec3(0, -1000, 0), 1000, new lambertian(vec3(0.5, 0.5, 0.5)));
+	vec3 cameraPos;
+	hitable** objects = new hitable * [0];
 
-	list<string>::iterator it = text.begin();
-	for (list<string>::iterator it = text.begin(); it != text.end(); it++)
+	material** materials = new material * [3];
+	materials[0] = new lambertian(vec3(0.5, 0.5, 0.5));
+	materials[1] = new metal(vec3(0.7, 0.6, 0.5), 0.0);
+	materials[2] = new dielectric(1.5);
+
+	int width = 200;
+	int height = 200;
+	int sampling = 5;
+	float aperture = 0.1;
+
+	for (list<string>::iterator it = lines.begin(); it != lines.end(); it++)
 	{
-		string token = *it;
 		if (*it == "cameraPos")
 		{
 			advance(it, 1);
 			for (int i = 0; i < 3; i++)
 			{
-				lookfrom.e[i] = stof(*it);
+				cameraPos.e[i] = stof(*it);
 				advance(it, 1);
 			}
-
 		}
-		 if (*it == "sphere")
+		if (*it == "sphere")
 		{
 			advance(it, 1);
 			int size = stoi(*it);
 
-			//objects = new hitable * [size];
+			objects = new hitable * [size];
 			advance(it, 1);
-			sphere *s = new sphere();
 
-
-			for (int i = 0; i < 3; i++)
+			for (int j = 0; j < size; j++)
 			{
-				s->center.e[i] = stof(*it);
+				sphere* s = new sphere();
+
+				for (int i = 0; i < 3; i++)
+				{
+					s->center.e[i] = stof(*it);
+					advance(it, 1);
+				}
+
+				s->radius = stof(*it);
 				advance(it, 1);
+
+				s->mat_ptr = materials[stoi(*it)];
+				advance(it, 1);
+
+				objects[j] = s;
 			}
-
-			advance(it, 1);
-			s->radius = stof(*it);
-
-			advance(it, 1);
-			s->mat_ptr = new metal(vec3(0.7, 0.6, 0.5), 0.0);
-
-			//objects[0] = s;
-			objects[0] = new sphere(vec3(0, -1000, 0), 1000, new lambertian(vec3(0.5, 0.5, 0.5)));
-
 		}
-		 if (*it == "img")
+		if (*it == "img")
 		{
+			advance(it, 1);
 
+			width = stoi(*it);
+			advance(it, 1);
+
+			height = stoi(*it);
+			advance(it, 1);
+
+			sampling = stoi(*it);
+			advance(it, 1);
+
+			aperture = stoi(*it);
 		}
 	}
 
-
 	vec3 lookat(0, 0, 0);
 	float dist_to_focus = 10.0;
-	float aperture = 0.1;
 
-
-	camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
-	hitable* world = new hitable_list(objects,1);
-
-
-	//hitable* list = new hitable[5];
+	camera cam(cameraPos, lookat, vec3(0, 1, 0), 20, float(width) / float(height), aperture, dist_to_focus);
+	hitable* world = new hitable_list(objects, 4);
 
 #define CHANNEL_NUM 3
 
-	/*** NOTICE!! You have to use uint8_t array to pass in stb function  ***/
-	// Because the size of color is normally 255, 8bit.
-	// If you don't use this one, you will get a weird imge.
-	uint8_t* pixels = new uint8_t[nx * ny * CHANNEL_NUM];
+	uint8_t* pixels = new uint8_t[width * height * CHANNEL_NUM];
 
 	int index = 0;
-	for (int j = nx - 1; j >= 0; --j)
+	for (int j = width - 1; j >= 0; --j)
 	{
-		for (int i = 0; i < ny; ++i)
+		for (int i = 0; i < height; ++i)
 		{
 			vec3 col(0, 0, 0);
-			for (int s = 0; s < ns; s++) {
-				float u = float(i + random_double()) / float(nx);
-				float v = float(j + random_double()) / float(ny);
+			for (int s = 0; s < sampling; s++) {
+				float u = float(i + random_double()) / float(width);
+				float v = float(j + random_double()) / float(height);
 				ray r = cam.get_ray(u, v);
 				col += color(r, world, 0);
 			}
-			col /= float(ns);
+			col /= float(sampling);
 			col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 			int ir = int(255.99 * col[0]);
 			int ig = int(255.99 * col[1]);
@@ -179,8 +188,7 @@ int main()
 		}
 	}
 
-	// if CHANNEL_NUM is 4, you can use alpha channel in png
-	stbi_write_png("stbpng.png", nx, ny, CHANNEL_NUM, pixels, nx * CHANNEL_NUM);
+	stbi_write_png("stbpng.png", width, height, CHANNEL_NUM, pixels, width * CHANNEL_NUM);
 
 	delete[] pixels;
 
